@@ -18,6 +18,41 @@ def pre_order_search( target , root):
     return False
 
 
+def post_order_search( target , root):
+    
+    if root:
+        
+        if post_order_search( target , root.left ):
+            return True
+        
+        if post_order_search( target , root.right ):
+            return True
+        
+        if root.data == target:
+            return True
+        
+    return False
+
+
+
+def in_order_search( target , root):
+    
+    if root:
+        
+        if in_order_search( target , root.left ):
+            return True
+        
+        if root.data == target:
+            return True
+        
+        if in_order_search( target , root.right ):
+            return True
+        
+        
+    return False
+
+
+
 def search(args):
     
     binary_tree = BinaryTree()
@@ -42,9 +77,27 @@ def search(args):
             
     
     if args.order == "post-order":
-        pass
+        print("Searching Tree ...")
+
+        target = args.word
+        
+        if post_order_search(target , binary_tree.root):
+            print("word Found")
+
+        else:
+            print("word not found ")
     
     
-    if args.order == "level-order":
-        pass
-    
+    if args.order == "in-order":
+        print("Searching Tree ...")
+
+        target = args.word
+        
+        if in_order_search(target , binary_tree.root):
+            print("word Found")
+
+        else:
+            print("word not found ")
+    else :
+
+        print("Cannot use that impl , use Pre-order / Post-order or In-order for DFS traversal")
